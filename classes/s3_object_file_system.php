@@ -12,7 +12,16 @@ class s3_object_file_system extends object_file_system {
 
     protected function initialise_external_client($config) {
 
-        $s3client = new client($config);
+        $s3client = new client([
+            'version' => 'latest',
+            'region'  => 'us-east-1',
+            'endpoint' => 'https://XXXXXX.stackhero-network.com',
+            'use_path_style_endpoint' => true,
+            'credentials' => [
+              'key'    => 'YOUR_ACCESS_KEY',
+              'secret' => 'YOUR_SECRET_KEY'
+            ],
+        ]);
 
         return $s3client;
     }
